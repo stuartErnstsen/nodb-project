@@ -7,19 +7,21 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+      pokemon: [],
       contenders: [],
+      possibleContenders: [],
       battlePair: [],
       resultsList: []
     }
   }
 
   componentDidMount(){
-    this.getAllContenders();
+    this.getAllPokemon();
   }
 
-  getAllContenders = () => {
+  getAllPokemon = () => {
     axios.get('/api/contenders')
-      .then(res => this.setState({contenders: res.data}))
+      .then(res => this.setState({pokemon: res.data, contenders: res.data}))
       .catch(err => console.log(err))
   }
 
@@ -38,6 +40,12 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
+
+  addContender = (poke) => {
+    axios.post('/api/contenders', {pokemon: poke})
+      .then(res => this.setState({contenders: res.data}))
+      .catch(err => console.log(err))
+  }
   
   render(){
     return (
@@ -45,7 +53,13 @@ class App extends Component {
         <header>BATTLE</header>
         <div>Temp for battle box</div>
         <section>TEMP FOR RESULTS</section>
-        <Contenders contenders={this.state.contenders} editNameFn={this.editName} deleteContenderFn={this.deleteContender}/>
+        <Contenders 
+          pokemon={this.state.pokemon}
+          contenders={this.state.contenders}
+          editNameFn={this.editName} 
+          deleteContenderFn={this.deleteContender}
+          addContenderFn={this.addContender}
+        />
       </div>
     );
   }

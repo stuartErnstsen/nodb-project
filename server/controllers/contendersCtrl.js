@@ -6,13 +6,9 @@ const pokemonArr = [];
 module.exports = {
     getAllContenders: (req, res) => {
         let promises = [];
-        for(let i=1;i<=20; i++){
-            let num = Math.ceil(Math.random() * 151);
-            while(pokemonArr.findIndex(e => e.id === num) !== -1){
-                num = Math.ceil(Math.random() * 151);
-            }
+        for(let i=1;i<=151; i++){
             promises.push(
-                axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`)
+                axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
                     .then(response => {
                         pokemonArr.push(response.data);
                     })
@@ -31,7 +27,6 @@ module.exports = {
     editName: (req, res) => {
         const   { id } = req.params,
                 { name } = req.body
-
         const temp = pokemonArr.find(e => e.id === +id)
         temp.name = name;
         res.status(200).send(pokemonArr)
@@ -40,6 +35,11 @@ module.exports = {
         const {id} = req.params;
         const index = pokemonArr.findIndex(e => e.id === +id)
         pokemonArr.splice(index, 1);
+        res.status(200).send(pokemonArr);
+    },
+    addContender: (req, res) => {
+        const {pokemon} = req.body
+        pokemonArr.unshift(pokemon);
         res.status(200).send(pokemonArr);
     }
 }
