@@ -7,8 +7,12 @@ module.exports = {
     getAllContenders: (req, res) => {
         let promises = [];
         for(let i=1;i<=20; i++){
+            let num = Math.ceil(Math.random() * 151);
+            while(pokemonArr.findIndex(e => e.id === num) !== -1){
+                num = Math.ceil(Math.random() * 151);
+            }
             promises.push(
-                axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
+                axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`)
                     .then(response => {
                         pokemonArr.push(response.data);
                     })
