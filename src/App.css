@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url(./fonts/Pokemon\ Hollow.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block
+}
+
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url(./fonts/Pokemon\ Solid.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block
+}
+
 *   {
   margin: 0;
   box-sizing: border-box;
@@ -42,10 +58,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Pokemon Hollow', sans-serif;
 }
 
-header h1 {
-  font-size: 5rem;
+header svg {
+  width: 400px;
+  position: relative;
+  top: 35px;  
 }
 
 main {
@@ -57,11 +76,13 @@ main {
 #contender-container {
   background-color: rgba(255, 255, 255, 0.3);
   overflow-y: auto;
-  width: 200px;
+  width: 150px;
   height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
+  word-wrap: inherit;
+  box-shadow: 0 5px 5px 0 gray;
 }
 
 #contender-container::-webkit-scrollbar {
@@ -75,4 +96,8 @@ main {
 #contender-container::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid white;  /* creates padding around scroll thumb */
+}
+
+#contender-container h2 {
+  font-size: 1rem;
 }

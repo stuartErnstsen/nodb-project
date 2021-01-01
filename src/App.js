@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import Contenders from './Components/Contenders'
+import Contenders from './Components/Contenders';
+import {ReactComponent as PokemonLogo} from './pokemon-23.svg'
 import './App.css';
 import axios from 'axios';
 
@@ -50,7 +51,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header><h1>BATTLE</h1></header>
+        <header><PokemonLogo /></header>
         <main>
           <Contenders 
             pokemon={this.state.pokemon}
