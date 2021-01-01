@@ -22,6 +22,22 @@ class App extends Component {
       .then(res => this.setState({contenders: res.data}))
       .catch(err => console.log(err))
   }
+
+  editName = (id, name) => {
+    axios.put(`/api/contenders/${id}`, {name: name})
+    .then(res => {
+      this.setState({contenders: res.data})
+    })
+    .catch(err => console.log(err))
+  }
+
+  deleteContender = (id) => {
+    axios.delete(`/api/contenders/${id}`)
+      .then(res => {
+        this.setState({contenders: res.data})
+      })
+      .catch(err => console.log(err))
+  }
   
   render(){
     return (
@@ -29,7 +45,7 @@ class App extends Component {
         <header>BATTLE</header>
         <div>Temp for battle box</div>
         <section>TEMP FOR RESULTS</section>
-        <Contenders contenders={this.state.contenders}/>
+        <Contenders contenders={this.state.contenders} editNameFn={this.editName} deleteContenderFn={this.deleteContender}/>
       </div>
     );
   }

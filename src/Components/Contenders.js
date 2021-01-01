@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Contender from './Contender'
 
 class Contenders extends Component {
     constructor(){
@@ -13,9 +14,17 @@ class Contenders extends Component {
     }
 
     render() {
-        console.log(this.props.contenders)
-        let contenderDisplay = this.props.contenders.map(poke => {
-            return <div>{poke.name}</div> 
+        let {contenders} = this.props
+        console.log(contenders[1])
+        let contenderDisplay = contenders.map((poke,i) => {
+            return <Contender 
+                key={i} 
+                name={poke.name} 
+                id={poke.id} 
+                sprite={poke.sprites.front_default} 
+                editNameFn={this.props.editNameFn}
+                deleteContenderFn={this.props.deleteContenderFn}
+                />
         })
         return (
             <section>
@@ -27,6 +36,19 @@ class Contenders extends Component {
             </section>
             
         )
+        // let contenderDisplay = contenders.map((user,i) => {
+        //     return <Contender key={i} name={user.username} sprite={user.bike.images.main} />
+        // })
+        // return (
+        //     <section>
+        //         <form>
+        //             <input type="text" value={this.state.nameInput} onChange={this.handleChange} />
+        //             <button>ADD CONTENDER</button>
+        //         </form>
+        //         {contenderDisplay}
+        //     </section>
+            
+        // )
     }
 }
 
