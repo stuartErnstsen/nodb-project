@@ -50,16 +50,18 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header>BATTLE</header>
-        <div>Temp for battle box</div>
-        <section>TEMP FOR RESULTS</section>
-        <Contenders 
-          pokemon={this.state.pokemon}
-          contenders={this.state.contenders}
-          editNameFn={this.editName} 
-          deleteContenderFn={this.deleteContender}
-          addContenderFn={this.addContender}
-        />
+        <header><h1>BATTLE</h1></header>
+        <main>
+          <Contenders 
+            pokemon={this.state.pokemon}
+            contenders={this.state.contenders}
+            editNameFn={this.editName} 
+            deleteContenderFn={this.deleteContender}
+            addContenderFn={this.addContender}
+          />
+          <div>Temp for battle box</div>
+          <section>TEMP FOR RESULTS</section>
+        </main>
       </div>
     );
   }

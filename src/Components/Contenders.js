@@ -18,11 +18,12 @@ class Contenders extends Component {
     render() {
         const { pokemon, contenders } = this.props
         //Creates list of next 9 pokemon in the contender list, it does not show whole list!
-        const contenderDisplay = contenders.slice(0, 9).map((poke,i) => {
+        const contenderDisplay = contenders.map((poke,i) => {
+            const { name, id } = poke
             return <Contender 
                 key={i} 
-                name={poke.name} 
-                id={poke.id} 
+                name={name} 
+                id={id} 
                 sprite={poke.sprites.front_default} 
                 editNameFn={this.props.editNameFn}
                 deleteContenderFn={this.props.deleteContenderFn}
@@ -35,15 +36,25 @@ class Contenders extends Component {
         })
 
         return (
-            <section>
-                <form>
-                    <input type="text" value={this.state.nameInput} onChange={this.handleChange} />
-                    <ul>
-                        {possibleContenders}
-                    </ul>
-                    <button>ADD CONTENDER</button>
-                </form>
-                {contenderDisplay}
+            <section id="contender-container">
+                <h2>CONTENDERS</h2>
+                {contenderDisplay.length > 0 
+                ? (
+                    contenderDisplay
+                ) : (
+                    <p>FFF</p>
+                )}  
+                {possibleContenders.length >0 &&
+                 (
+                    <aside>
+                        <h3>ADD POKEMON BACK TO CONTENDERS:</h3>
+                        <ul>
+                            {possibleContenders}
+                        </ul>
+                        <button>ADD CONTENDER</button>
+                    </aside>
+                    
+                 )} 
             </section>
             
         )

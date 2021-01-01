@@ -1,5 +1,4 @@
 import { Component } from "react";
-import axios from 'axios';
 
 class Contender extends Component {
     constructor(){
@@ -42,22 +41,6 @@ class Contender extends Component {
                     <button onClick={() => this.handleSubmit(id)}>SUBMIT</button>
                 </div>
             )
-            // !this.state.editView 
-            // ? (
-            //     <div>
-            //         <img src={sprite} alt={name} width="100px"/>
-            //         <p>{name}</p>
-            //         <button onClick={this.toggleEdit}>EDIT</button>
-            //         <button>DELETE</button>
-            //     </div>
-            // )
-            // : (
-            //     <div>
-            //         <img src={sprite} alt={name} width="100px"/>
-            //         <input value={this.state.nameInput} onChange={this.handleChange} placeholder={name}/>
-            //         <button onClick={() => this.handleSubmit(this.props.id)}>SUBMIT</button>
-            //     </div>
-            // )
         )
     }
 }
