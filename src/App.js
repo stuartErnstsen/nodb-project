@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import Contenders from './Components/Contenders';
+import Battle from './Components/Battle';
+import Results from './Components/Results';
 import {ReactComponent as PokemonLogo} from './pokemon-23.svg'
 import './App.css';
 import axios from 'axios';
@@ -10,7 +12,6 @@ class App extends Component {
     this.state = {
       pokemon: [],
       contenders: [],
-      possibleContenders: [],
       battlePair: [],
       resultsList: []
     }
@@ -60,8 +61,11 @@ class App extends Component {
             deleteContenderFn={this.deleteContender}
             addContenderFn={this.addContender}
           />
-          <div>Temp for battle box</div>
-          <section>TEMP FOR RESULTS</section>
+          <Battle 
+            contenders={this.state.contenders}
+            deleteContenderFn={this.deleteContender}
+          />
+          <Results />
         </main>
       </div>
     );
