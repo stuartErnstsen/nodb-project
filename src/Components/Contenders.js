@@ -37,7 +37,7 @@ class Contenders extends Component {
 
         return (
             <section id="contender-container">
-                <h2>CONTENDERS</h2>
+                <h2 id='contender-container-title'>CONTENDERS</h2>
                 {contenderDisplay.length > 0 
                 ? (
                     contenderDisplay

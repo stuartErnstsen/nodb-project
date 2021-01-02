@@ -14,9 +14,10 @@
   font-display: block
 }
 
-*   {
+*, button {
   margin: 0;
   box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
 }
 
 .App {
@@ -29,6 +30,7 @@
   flex-direction: column;
   background-image: url('https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png');
   background-size: cover;
+  background-position: bottom;
 }
 
 .App-logo {
@@ -74,8 +76,10 @@ main {
 
 /* ================CONTENDER SECTION========================================================================== */
 #contender-container {
-  background-color: rgba(255, 255, 255, 0.3);
+  box-sizing: content-box;
+  background-color: rgba(0, 0, 0, 0.3);
   overflow-y: auto;
+  overflow-x: hidden;
   width: 150px;
   height: 100vh;
   position: fixed;
@@ -83,10 +87,25 @@ main {
   top: 0;
   word-wrap: inherit;
   box-shadow: 0 5px 5px 0 gray;
+  padding-top: 30px;
+}
+
+#contender-container-title {
+  width: 150px;
+  height: 30px;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid black;
+  box-shadow: 0 0 3px 0 gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFCB05;
+  z-index: 2;
 }
 
 #contender-container::-webkit-scrollbar {
-  width: 3px;               /* width of the entire scrollbar */
+  width: 3px;        /* width of the entire scrollbar */
 }
 
 #contender-container::-webkit-scrollbar-track {
@@ -100,4 +119,46 @@ main {
 
 #contender-container h2 {
   font-size: 1rem;
+}
+
+.contender {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contender-name {
+  margin-top: 5px;
+  color: #FFCB05;
+  font-weight: bold;
+  text-shadow: 0 0 2px gray;
+  text-transform: uppercase;
+}
+
+.contender-sprite {
+  position: absolute;
+}
+
+.contender-btn-container {
+  display:flex;
+  justify-content:space-around;
+}
+
+.contender-btn-container button {
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 49%;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: .5rem;
+  color: black;
+}
+
+.z-index {
+  z-index: 1;
 }

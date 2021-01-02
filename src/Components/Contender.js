@@ -27,18 +27,22 @@ class Contender extends Component {
         return (
             !this.state.editView 
             ? (
-                <div>
-                    <img src={sprite} alt={name} width="100px"/>
-                    <p>{name}</p>
-                    <button onClick={this.toggleEdit}>EDIT</button>
-                    <button onClick={() => this.props.deleteContenderFn(id)}>DELETE</button>
+                <div className="contender">
+                    <img className="contender-sprite" src={sprite} alt={name} width="150px"/>
+                    <p className="z-index contender-name">{name}</p>
+                    <div className="contender-btn-container z-index">
+                        <button onClick={this.toggleEdit}>EDIT</button>
+                        <button onClick={() => this.props.deleteContenderFn(id)}>DEL</button>
+                    </div>
                 </div>
             )
             : (
-                <div>
-                    <img src={sprite} alt={name} width="100px"/>
-                    <input value={this.state.nameInput} onChange={this.handleChange} placeholder={name}/>
-                    <button onClick={() => this.handleSubmit(id)}>SUBMIT</button>
+                <div className="contender">
+                    <img className="contender-sprite" src={sprite} alt={name} width="150px"/>
+                    <input className="z-index" value={this.state.nameInput} onChange={this.handleChange} placeholder={name}/>
+                    <div className="contender-btn-container z-index">
+                        <button onClick={() => this.handleSubmit(id)}>SUBMIT</button>
+                    </div>
                 </div>
             )
         )
