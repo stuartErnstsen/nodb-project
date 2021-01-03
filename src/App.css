@@ -73,13 +73,13 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0 150px 0 150px;
+  padding: 0 200px 0 200px;
 }
 
 /* ================CONTENDER SECTION========================================================================== */
 #contender-container {
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  background-color: #2B72B8;
   overflow-x: hidden;
   width: 150px;
   height: 100vh;
@@ -89,11 +89,13 @@ main {
   word-wrap: inherit;
   box-shadow: 0 5px 5px 0 gray;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 #contender-container-title {
   width: 150px;
-  height: 30px;
+  min-height: 30px;
   position: fixed;
   top: 0;
   border-bottom: 1px solid black;
@@ -105,21 +107,26 @@ main {
   z-index: 2;
 }
 
-#contender-container::-webkit-scrollbar {
+#contender-container h2 {
+  font-size: 1rem;
+}
+
+#contender-list{
+  overflow-y: auto;
+  z-index: 1;
+}
+
+#contender-list::-webkit-scrollbar {
   width: 3px;        /* width of the entire scrollbar */
 }
 
-#contender-container::-webkit-scrollbar-track {
+#contender-list::-webkit-scrollbar-track {
   background: transparent;        /* color of the tracking area */
 }
 
-#contender-container::-webkit-scrollbar-thumb {
+#contender-list::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid white;  /* creates padding around scroll thumb */
-}
-
-#contender-container h2 {
-  font-size: 1rem;
 }
 
 .contender {
@@ -129,6 +136,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* border-bottom: 1px solid gray; */
 }
 
 .contender-name {
@@ -163,6 +171,33 @@ main {
 .z-index {
   z-index: 1;
 }
+
+#past-contenders-container {
+  width: 50px;
+  height: 600px;
+  position: fixed;
+  left: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+
+#past-contenders-container::-webkit-scrollbar {
+  width: 0px;        /* width of the entire scrollbar */
+}
+
+#past-contenders-container img{
+  width: 55px;
+  z-index: 0;
+}
 /* =================BATTLE STYLING==================================================================== */
 #battle-container {
   flex-grow: 1;
@@ -184,11 +219,26 @@ main {
   justify-content: center;
   align-items: center;
   z-index: 0;
+  font-weight: bold;
+  font-size: 4rem;
+  color: rgb(231, 43, 43);
 }
 
 .arena-contender {
   width: 50%;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#arena-contender1 img {
+  width: 200px;
+}
+
+#arena-contender2 img {
+  width: 120px;
 }
 
 #battle-footer {

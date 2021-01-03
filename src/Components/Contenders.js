@@ -31,7 +31,7 @@ class Contenders extends Component {
         //Creates a list of unused pokemon that are not currently in contender list
         //pokemon that have been removed from contenders get added to this list 
         const possibleContenders = pokemon.filter(e => !contenders.find(e2 => e.id === e2.id)).map((poke,index) => {
-            return <li key={index} pokemon={poke} onClick={() => this.props.addContenderFn(poke)}><img alt={poke.name} src={poke.sprites.front_default}></img></li>
+            return <div key={index} pokemon={poke} onClick={() => this.props.addContenderFn(poke)}><img alt={poke.name} src={poke.sprites.front_default}></img></div>
         })
 
         return (
@@ -39,18 +39,16 @@ class Contenders extends Component {
                 <h2 id='contender-container-title'>CONTENDERS</h2>
                 {contenderDisplay.length > 0 
                 ? (
-                    contenderDisplay
+                    <div id="contender-list">
+                        {contenderDisplay}
+                    </div>
                 ) : (
                     <p>LOADING...</p>
                 )}  
                 {possibleContenders.length >0 &&
                  (
-                    <aside className="past-contenders-container">
-                        <h3>ADD POKEMON BACK TO CONTENDERS:</h3>
-                        <ul>
+                    <aside id="past-contenders-container">
                             {possibleContenders}
-                        </ul>
-                        <button>ADD CONTENDER</button>
                     </aside>
                     
                  )} 
