@@ -84,6 +84,7 @@ main {
   width: 150px;
   height: 100vh;
   position: fixed;
+  overflow-x: hidden;
   left: 0;
   top: 0;
   word-wrap: inherit;
@@ -113,6 +114,7 @@ main {
 
 #contender-list{
   overflow-y: auto;
+  overflow-x: hidden;
   z-index: 1;
 }
 
@@ -224,6 +226,11 @@ main {
   color: rgb(231, 43, 43);
 }
 
+#battle-arena #battle-loading {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
 .arena-contender {
   width: 50%;
   z-index: 1;
@@ -231,6 +238,8 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 #arena-contender1 img {
@@ -242,8 +251,45 @@ main {
 }
 
 #battle-footer {
-  height: 100px;
+  height: 120px;
   justify-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#battle-footer svg{
+  color: white;
+  height: 100px;
+}
+
+#battle-footer svg:hover {
+  color: #FFCB05;
+  -webkit-filter: drop-shadow( 0px 0px 5px rgba(255, 255, 255, 1));
+  filter: drop-shadow( 0px 0px 5px rgba(255, 255, 255, 1));
+}
+
+.battle-button {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border: 6px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 1.5rem;
+  transition: ease-in-out .25s;
+}
+
+.battle-button:hover {
+  box-shadow: 0 0 10px white;
+  color:rgb(231, 43, 43);
+  border: 6px solid rgb(231, 43, 43);
+  transition: ease-in-out .25s;
+  font-size: 1.6rem;
 }
 
 /* ==================RESULTS STYLING===================================================================== */
@@ -259,4 +305,21 @@ main {
   word-wrap: inherit;
   box-shadow: 0 5px 5px 0 gray;
   padding-top: 30px;
+  color: #FFCB05;
+}
+
+.results-box {
+  display: flex;
+}
+
+.results-item {
+  width: 50%;
+}
+
+.results-box img {
+  width: 75px;
+}
+
+.results-loser {
+  color:rgb(231, 43, 43);
 }

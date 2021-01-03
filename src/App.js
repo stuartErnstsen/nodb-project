@@ -12,7 +12,6 @@ class App extends Component {
     this.state = {
       pokemon: [],
       contenders: [],
-      battlePair: [],
       resultsList: []
     }
   }
@@ -48,6 +47,15 @@ class App extends Component {
       .then(res => this.setState({contenders: res.data}))
       .catch(err => console.log(err))
   }
+
+  addResults = (result) => {
+    axios.post('/api/results', {winner: result.winner, loser: result.loser})
+      .then(res =>{
+        console.log(res.data)
+        this.setState({resultsList: res.data})
+      })
+      .catch(err => console.log(err))
+  }
   
   render(){
     return (
@@ -64,8 +72,9 @@ class App extends Component {
           <Battle 
             contenders={this.state.contenders}
             deleteContenderFn={this.deleteContender}
+            addResultsFn={this.addResults}
           />
-          <Results />
+          <Results resultsList={this.state.resultsList}/>
         </main>
       </div>
     );
