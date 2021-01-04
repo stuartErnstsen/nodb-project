@@ -15,6 +15,7 @@ app.get('/api/contenders', contenderCtrl.getAllContenders)
 app.put('/api/contenders/:id', contenderCtrl.editName)
 app.delete('/api/contenders/:id', contenderCtrl.deleteContender)
 app.post('/api/contenders', contenderCtrl.addContender)
+app.get('/api/pokedex/', contenderCtrl.getPokedexItem)
 
 // ======BATTLE CONTROLLER======================================================
 

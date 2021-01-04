@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Contenders from './Components/Contenders';
+import Pokedex from './Components/Pokedex'
 import Battle from './Components/Battle';
 import Results from './Components/Results';
 import {ReactComponent as PokemonLogo} from './pokemon-23.svg'
@@ -69,6 +70,7 @@ class App extends Component {
             deleteContenderFn={this.deleteContender}
             addContenderFn={this.addContender}
           />
+          <Pokedex />
           <Battle 
             contenders={this.state.contenders}
             deleteContenderFn={this.deleteContender}

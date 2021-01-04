@@ -41,5 +41,17 @@ module.exports = {
         const {pokemon} = req.body
         pokemonArr.unshift(pokemon);
         res.status(200).send(pokemonArr);
+    },
+
+    getPokedexItem: (req, res) => {
+        const {type1, type2} = req.query
+        // console.log(type1, type2)
+        const filteredArr = pokemonArr.filter(e => {
+            return e.types.some(el => {
+                console.log(el.type.name)
+                return el.type.name === type1 || el.type.name === type2
+            })
+        })
+        res.status(200).send(filteredArr)
     }
 }

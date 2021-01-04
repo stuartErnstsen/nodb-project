@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import Contender from './Contender'
 
 const Contenders = (props) => {
