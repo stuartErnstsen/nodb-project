@@ -89,18 +89,17 @@ main {
   top: 0;
   word-wrap: inherit;
   box-shadow: 0 5px 5px 0 gray;
-  padding-top: 30px;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
 }
 
 #contender-container-title {
   width: 150px;
-  min-height: 30px;
+  min-height: 40px;
   position: fixed;
   top: 0;
-  border-bottom: 1px solid black;
-  box-shadow: 0 0 3px 0 gray;
+  box-shadow: 0 0 3px 0 black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -304,8 +303,23 @@ main {
   top: 0;
   word-wrap: inherit;
   box-shadow: 0 5px 5px 0 gray;
-  padding-top: 30px;
-  color: #FFCB05;
+  padding-top: 40px;
+  color: black;
+}
+
+#results-container h2 {
+  width: 150px;
+  min-height: 40px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-shadow: 0 0 3px 0 black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFCB05;
+  z-index: 2;
+  font-size: 1rem;
 }
 
 .results-box {
@@ -322,4 +336,61 @@ main {
 
 .results-loser {
   color:rgb(231, 43, 43);
+}
+
+/* ==================POKEDEX STYLING===================================================================== */
+#pokedex-container {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  background-color: rgb(231, 43, 43);
+  box-shadow: 0 0 3px black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 0;
+}
+#pokedex-toggle-button {
+  width: 300px;
+  height: 40px;
+  display: flex;
+}
+
+#pokedex-circs {
+  display: flex;
+}
+
+#pokedex-title {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circ {
+  margin: 4px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid black;
+  border-radius: 50%;
+  box-shadow: inset 0 0 3px black;
+}
+
+#blue {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  border-color: white;
+  background-color:#2B72B8;
+}
+
+#red {
+  background-color: rgb(231, 43, 43);
+}
+
+#yellow {
+  background-color: rgb(231, 197, 43);
+}
+
+#green {
+  background-color: rgb(24, 179, 37);
 }

@@ -8,6 +8,7 @@ const Results = (props) => {
     })
     return (
         <section id="results-container">
+            <h2>RESULTS:</h2>
             {results}
         </section>
     )

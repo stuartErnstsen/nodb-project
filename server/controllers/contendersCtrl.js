@@ -1,5 +1,6 @@
 const axios = require('axios')
 const pokemonArr = [];
+let pokemonArrComplete = []
 // const DATA = require('../../src/data')
 // let id = 0;
 
@@ -11,6 +12,7 @@ module.exports = {
                 axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
                     .then(response => {
                         pokemonArr.push(response.data);
+                        pokemonArrComplete.push(response.data)
                     })
                     .catch(err => res.status(500).send(err))
             )
@@ -18,13 +20,6 @@ module.exports = {
         Promise.all(promises).then(() => {
             res.status(200).send(pokemonArr)
         })
-        // console.log(DATA)
-        // let contenderArr = DATA;
-        // for(let i=0;i<contenderArr.length; i++){
-        //     contender[i].id = id;
-        //     id++;
-        // }
-        // res.status(200).send(contenderArr)
     },
     editName: (req, res) => {
         const { id } = req.params,
@@ -47,12 +42,8 @@ module.exports = {
 
     getPokedexItem: (req, res) => {
         const { type1, type2 } = req.query
-        // console.log(type1, type2)
-        const filteredArr = pokemonArr.filter(e => {
-            return e.types.some(el => {
-                // console.log(el.type.name)
-                return el.type.name === type1 || el.type.name === type2
-            })
+        const filteredArr = pokemonArrComplete.filter(e => {
+            return e.types.some(el => el.type.name === type1 || !type1) && e.types.some(el2 => el2.type.name === type2 || !type2)
         })
         res.status(200).send(filteredArr)
     }
