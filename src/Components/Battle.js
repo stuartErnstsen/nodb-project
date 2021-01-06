@@ -7,6 +7,9 @@ class Battle extends Component {
         this.state = {
             contender1: {},
             contender2: {},
+            copyHp1: 0,
+            copyHp2: 0,
+            atkCount: 0,
             arenaSet: false,
             battleFinished: false
         }
@@ -26,7 +29,7 @@ class Battle extends Component {
         axios.post('/api/battle', { poke1: rand1, poke2: rand2 })
             .then(res => {
                 const { poke1, poke2 } = res.data
-                this.setState({ contender1: poke1, contender2: poke2 })
+                this.setState({ contender1: poke1, contender2: poke2, copyHp1: poke1.stats[0].base_stat, copyHp2: poke2.stats[0].base_stat })
                 deleteContenderFn(poke1.id)
                 deleteContenderFn(poke2.id)
                 this.toggleArenaSet()
@@ -42,19 +45,53 @@ class Battle extends Component {
 
     fight = () => {
         const cont1 = this.state.contender1,
-            cont2 = this.state.contender2
-        let atkCount = 1;
-
-        while (cont1.stats[0].base_stat > 0 && cont2.stats[0].base_stat > 0) {
-            if (cont1.stats[5].base_stat > cont2.stats[5].base_stat && atkCount % 2 === 1) {
-                cont2.stats[0].base_stat -= cont1.stats[1].base_stat;
+            cont2 = this.state.contender2,
+            first = cont1.stats[5].base_stat >= cont2.stats[5].base_stat ? 1 : 2
+        const tempCount = this.state.atkCount + 1
+        this.setState({ atkCount: tempCount })
+        if (cont1.stats[0].base_stat > 0 && cont2.stats[0].base_stat > 0) {
+            if (first === 1) {
+                console.log(tempCount)
+                if (cont1.stats[5].base_stat >= cont2.stats[5].base_stat && tempCount % 2 === 1) {
+                    cont2.stats[0].base_stat -= cont2.stats[0].base_stat - cont1.stats[1].base_stat / 4 >= 0
+                        ? cont1.stats[1].base_stat / 4
+                        : cont2.stats[0].base_stat
+                } else {
+                    cont1.stats[0].base_stat -= cont1.stats[0].base_stat - cont2.stats[1].base_stat / 4 >= 0
+                        ? cont2.stats[1].base_stat / 4
+                        : cont1.stats[0].base_stat
+                }
+                // if (cont1.stats[0].base_stat < 0) this.setState({})
             } else {
-                cont1.stats[0].base_stat -= cont2.stats[1].base_stat;
+                console.log(tempCount)
+                if (cont2.stats[5].base_stat >= cont1.stats[5].base_stat && tempCount % 2 === 1) {
+                    cont1.stats[0].base_stat -= cont1.stats[0].base_stat - cont2.stats[1].base_stat / 4 >= 0
+                        ? cont2.stats[1].base_stat / 4
+                        : cont1.stats[0].base_stat
+                } else {
+                    cont2.stats[0].base_stat -= cont2.stats[0].base_stat - cont1.stats[1].base_stat / 4 >= 0
+                        ? cont1.stats[1].base_stat / 4
+                        : cont2.stats[0].base_stat
+                }
+                // if (cont1.stats[0].base_stat < 0) this.setState({})
             }
-            atkCount++;
             this.setState({ contender1: cont1, contender2: cont2 })
+            // if (this.state.copyHp1 > 0 && this.state.copyHp2 > 0) {
+            //     if (cont1.stats[5].base_stat > cont2.stats[5].base_stat && atkCount % 2 === 1) {
+            //         this.setState({ copyHp2: this.state.copyHp2 -= cont1.stats[1].base_stat });
+            //     } else {
+            //         this.setState({ copyHp1: this.state.copyHp1 -= cont2.stats[1].base_stat });
+            //     }
+            //     atkCount++;
+            //     this.setState({ contender1: cont1, contender2: cont2 })
+            // }
+            // if (this.state.copyHp1 < 0 || this.state.copyHp2 < 0) {
+            //     this.setState({ battleFinished: true })
+            // }
         }
-        this.setState({ battleFinished: true })
+        if (cont1.stats[0].base_stat <= 0 || cont2.stats[0].base_stat <= 0) {
+            this.setState({ battleFinished: true, atkCount: 0 })
+        }
     }
 
     addResults = () => {
@@ -78,20 +115,32 @@ class Battle extends Component {
                                 <h3>{contender1.name}</h3>
                                 <img alt={contender1.name} src={contender1.sprites.back_default} />
                                 <section className="stats">
-                                    <p>HP: {contender1.stats[0].base_stat}</p>
-                                    <p>ATK: {contender1.stats[1].base_stat}</p>
-                                    <p>SPD: {contender1.stats[5].base_stat}</p>
+                                    <div className="hp-main-container">
+                                        <h3>HP:</h3>
+                                        <div className="hp-bar-container">
+                                            <div className="inner-hp-bar" style={{ width: `${Math.floor(contender1.stats[0].base_stat / this.state.copyHp1 * 350)}px` }}></div>
+                                        </div>
+                                    </div>
+                                    {/* <p>HP: {contender1.stats[0].base_stat}/{Math.floor(contender1.stats[0].base_stat / this.state.copyHp1 * 100)}</p> */}
+                                    {/* <p>ATK: {contender1.stats[1].base_stat}</p> */}
+                                    {/* <p>SPD: {contender1.stats[5].base_stat}</p> */}
                                 </section>
                             </div>
                             <h2>VS</h2>
                             <div id="arena-contender2" className="arena-contender">
-                                <h3>{contender2.name}</h3>
-                                <img alt={contender2.name} src={contender2.sprites.front_default} />
                                 <section className="stats">
-                                    <p>HP: {contender2.stats[0].base_stat}</p>
+                                    <div className="hp-main-container">
+                                        <h3>HP:</h3>
+                                        <div className="hp-bar-container">
+                                            <div className="inner-hp-bar" style={{ width: `${Math.floor(contender2.stats[0].base_stat / this.state.copyHp2 * 350)}px` }}></div>
+                                        </div>
+                                    </div>
+                                    {/* <p>HP: {contender2.stats[0].base_stat}</p>
                                     <p>ATK: {contender2.stats[1].base_stat}</p>
-                                    <p>SPD: {contender2.stats[5].base_stat}</p>
+                                <p>SPD: {contender2.stats[5].base_stat}</p> */}
                                 </section>
+                                <img alt={contender2.name} src={contender2.sprites.front_default} />
+                                <h3>{contender2.name}</h3>
                             </div>
                         </div>
                     ) : (
