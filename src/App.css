@@ -78,8 +78,8 @@ main {
 
 /* ================CONTENDER SECTION========================================================================== */
 #contender-container {
-  /* background-color: rgba(0, 0, 0, 0.3); */
-  background-color: #2B72B8;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: #2B72B8; */
   overflow-x: hidden;
   width: 150px;
   height: 100vh;
@@ -99,7 +99,6 @@ main {
   min-height: 40px;
   position: fixed;
   top: 0;
-  box-shadow: 0 0 3px 0 black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,16 +156,25 @@ main {
   justify-content:space-around;
 }
 
-.contender-btn-container button {
-  height: 30px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 49%;
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: .5rem;
-  color: black;
+.button-container {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.contender-button {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.button-container:hover {
+  border: 1px dashed white;
 }
 
 .z-index {
@@ -198,6 +206,12 @@ main {
 #past-contenders-container img{
   width: 55px;
   z-index: 0;
+  transition: .2s;
+}
+
+#past-contenders-container img:hover{
+  width: 65px;
+  transition: .2s;
 }
 /* =================BATTLE STYLING==================================================================== */
 #battle-container {
@@ -313,7 +327,6 @@ main {
   position: fixed;
   top: 0;
   right: 0;
-  box-shadow: 0 0 3px 0 black;
   display: flex;
   justify-content: center;
   align-items: center;
