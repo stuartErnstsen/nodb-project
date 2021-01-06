@@ -39,7 +39,7 @@ class Pokedex extends Component {
 
         return (
             <div id="pokedex-container">
-                <aside id="pokedex-toggle-button" onClick={this.togglePokedex}>
+                <aside id="pokedex-device-container" onClick={this.togglePokedex}>
                     <div id="pokedex-circs">
                         <div id="blue" className="circ"></div>
                         <div id="red" className="circ"></div>
@@ -52,8 +52,8 @@ class Pokedex extends Component {
                 </aside>
                 {this.state.pokedexOpen
                     ? (
-                        <section>
-                            <p>Pokedex Open</p>
+                        <section id="pokedex-search-container">
+                            <p>Choose types to search POKEDEX:</p>
                             <label htmlFor="type1Input">Type 1:</label>
                             <select name="type1Input" id="type1" onChange={this.handleChange} className="type-input">
                                 {selectType}
@@ -62,12 +62,16 @@ class Pokedex extends Component {
                             <select name="type2Input" id="type2" onChange={this.handleChange} className="type-input">
                                 {selectType}
                             </select>
-                            <button onClick={this.handlePokedexSubmit}>SUBMIT</button>
+                            <button className="pointer" onClick={this.handlePokedexSubmit}>SUBMIT</button>
                             {results}
                         </section>
                     ) : (
                         <div></div>
                     )}
+                {this.state.pokedexOpen
+                    ? <div className="pokedex-toggle-button pointer" onClick={this.togglePokedex}>CLOSE POKEDEX</div>
+                    : <div className="pokedex-toggle-button pointer" onClick={this.togglePokedex}>OPEN POKEDEX</div>
+                }
             </div>
         )
     }

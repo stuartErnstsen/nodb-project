@@ -22,7 +22,7 @@ const Contenders = (props) => {
                 key={index}
                 pokemon={poke}
                 onClick={() => props.addContenderFn(poke)}>
-                <img className="past-contender-hover" alt={poke.name} src={poke.sprites.front_default}></img>
+                <img className="past-contender-hover pointer" alt={poke.name} src={poke.sprites.front_default}></img>
             </div>
         )
     })
